@@ -17,7 +17,7 @@ class CategoryController extends AbstractController
 {
 
 	#[Route('/', name: 'category_list')]
-	public function get(ManagerRegistry $doctrine): Response
+	public function index(ManagerRegistry $doctrine): Response
 	{
 		$categories = $doctrine->getRepository(Category::class)->findAll();
 		return $this->render('category/index.html.twig', compact('categories'));
@@ -52,11 +52,7 @@ class CategoryController extends AbstractController
 			$entityManager->flush();
             return $this->redirectToRoute('category_list');
         }
-
-        return $this->renderForm('category/edit.html.twig', [
-            'employee_category' => $category,
-            'form' => $form,
-        ]);
+        return $this->renderForm('category/edit.html.twig', compact('form', 'category'));
 	}
 
 	#[Route('/{id}', name: 'category_delete', methods: ['POST'])]

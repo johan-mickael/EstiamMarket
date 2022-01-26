@@ -1,6 +1,10 @@
-{% extends 'category/layout.html.twig' %}
-{% block action %}Create{%endblock%}
-{% block category_content %}
-{{form(form)}}
+{% extends 'layout.html.twig' %}
+{% block category_active %}active{% endblock %}
+{% block content %}
 <a href="{{path('category_list')}}" class="text-primary">Return back</a>
+<h2>Edit category: {{category.label | lower}}</h2>
+<div class="p-4 border">
+	{{form(form)}}
+</div>
+
 {%endblock%}

@@ -16,12 +16,10 @@ class ProductController extends AbstractController
 {
 
 	#[Route('/', name: 'product_list')]
-	public function get(ManagerRegistry $doctrine): Response
+	public function index(ManagerRegistry $doctrine): Response
 	{
 		$products = $doctrine->getRepository(Product::class)->findAll();
-		return $this->render('product/index.html.twig', [
-			'products' => $products
-		]);
+		return $this->render('product/index.html.twig', compact('products'));
 	}
 
 	#[Route('/new', name: 'product_new', methods: ['GET', 'POST'])]

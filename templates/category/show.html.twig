@@ -1,12 +1,13 @@
 {% extends "layout.html.twig" %}
-
+{% block category_active %}active{% endblock %}
 {% block content %}
+<a href="{{path('category_list')}}" class="text-primary">Return back</a>
+<h2>Category details: {{category.label}}</h2>
 <div class="card shadow-sm" style="width: 18rem;">
 	<div class="card-body">
 		<h5 class="card-title text-capitalize">{{category.label}}</h5>
-		<a href="{{path('category_edit', {'id': category.id})}}" class="btn btn-primary btn-sm">Edit</a>
+		<a href="{{path('category_edit', {'id': category.id})}}" class="btn btn-secondary btn-sm">Edit</a>
 		{% include "category/remove.html.twig" %}
-		<a href="{{path('category_list')}}" class="text-primary">Return back</a>
 	</div>
 </div>
 {% endblock %}

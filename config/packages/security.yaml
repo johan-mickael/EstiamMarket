@@ -1,4 +1,5 @@
 security:
+    access_denied_url: app_login
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
@@ -35,7 +36,19 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+          - { path: ^/products, roles: [ROLE_USER], methods: [GET] }
+          - { path: ^/categories, roles: [ROLE_USER], methods: [GET] }
+          - { path: ^/users, roles: [ROLE_USER], methods: [GET] }
+          - { path: ^/products/new, roles: ROLE_ADMIN, methods: [POST] }
+          - { path: ^/products/[0-9]+/edit, roles: ROLE_ADMIN, methods: [POST, PUT] }
+          - { path: ^/products/[0-9]+, roles: ROLE_ADMIN, methods: [POST] }
+          - { path: ^/categories/new, roles: ROLE_ADMIN, methods: [POST] }
+          - { path: ^/categories/[0-9]+/edit, roles: ROLE_ADMIN, methods: [POST, PUT] }
+          - { path: ^/categories/[0-9]+, roles: ROLE_ADMIN, methods: [POST] }
+          - { path: ^/users/, roles: ROLE_ADMIN, methods: [GET] }
+          - { path: ^/users/new, roles: ROLE_ADMIN, methods: [GET, POST] }
+          - { path: ^/users/[0-9]+/edit, roles: ROLE_ADMIN, methods: [GET, POST, PUT] }
+          - { path: ^/users/[0-9]+, roles: ROLE_ADMIN, methods: [POST] }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

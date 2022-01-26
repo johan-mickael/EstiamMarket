@@ -1,0 +1,26 @@
+{% extends "layout.html.twig" %}
+{% block user_active %}active{% endblock %}
+{% block content %}
+
+<a href="{{path('user_list')}}" class="text-primary">Return to list</a>
+<h2>User informations.</h2>
+<div class="card shadow-sm" style="width: 18rem;">
+	<div class="card-body">
+		<h5 class="card-title text-capitalize">{{user.firstname}} {{user.lastname}}</h5>
+		<div class="categories">
+			{% for role in user.roles %}
+			<span class="badge bg-success text-lowercase">{{role}}</span>
+			{% endfor %}
+		</div>
+	</div>
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item"><small class="card-text fs-6">{{user.email}}</small></li>
+		<li class="list-group-item"><small class="card-text fs-6">{{user.birth|date('Y/m/d')}}</small></li>
+	</ul>
+	<div class="card-footer text-end">
+		<a href="{{path('user_edit', {'id': user.id})}}" class="btn btn-secondary btn-sm">Edit</a>
+		{% include "user/remove.html.twig" %}
+	</div>
+</div>
+
+{% endblock %}

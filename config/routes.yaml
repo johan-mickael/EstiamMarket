@@ -1,7 +1,14 @@
 controllers:
-    resource: ../src/Controller/
-    type: annotation
+  resource: ../src/Controller/
+  type: annotation
+
+homepage:
+  path: /
+  controller: App\Controller\SecurityController::login
+  defaults:
+    path: /app_login
+    permanent: true
 
 kernel:
-    resource: ../src/Kernel.php
-    type: annotation
+  resource: ../src/Kernel.php
+  type: annotation

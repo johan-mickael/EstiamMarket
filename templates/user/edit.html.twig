@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+{% block user_active %}active{% endblock %}
+{% block content %}
+<a href="{{path('user_list')}}" class="text-primary">Return to list</a>
+<h2>Edit user informations: {{user.firstname | capitalize}} {{user.lastname | capitalize}}</h2>
+<div class="p-4 border">
+	{{form(form)}}
+</div>
+
+{% endblock %}

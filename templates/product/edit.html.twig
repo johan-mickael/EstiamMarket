@@ -1,6 +1,10 @@
 {% extends 'layout.html.twig' %}
+{% block product_active %}active{% endblock %}
 {% block content %}
 <a href="{{path('product_list')}}" class="text-primary">Return to list</a>
-<h1>Edit product: {{product.label | capitalize}}</h1>
-{{form(form)}}
+<h2>Edit product: {{product.label | capitalize}}</h2>
+<div class="p-4 border">
+	{{form(form)}}
+</div>
+
 {%endblock%}

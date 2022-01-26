@@ -1,10 +1,9 @@
 {% extends "layout.html.twig" %}
-
+{% block product_active %}active{% endblock %}
 {% block content %}
 
-<h1>Product details</h1>
-
 <a href="{{path('product_list')}}" class="text-primary">Return to list</a>
+<h2>{{product.label|capitalize}} details.</h2>
 <div class="card shadow-sm" style="width: 18rem;">
 	<img src="..." class="card-img-top" alt="...">
 	<div class="card-body">
@@ -18,13 +17,16 @@
 	<ul class="list-group list-group-flush">
 		<li class="list-group-item"><small class="card-text fs-6">{{product.description}}</small></li>
 		<li class="list-group-item">
-			HT Price €<span class="badge bg-primary float-end">{{product.htprice}}</span>
+			TTC Price € <span class="badge bg-primary float-end">{{product.htprice * (product.vat/100)}}</span>
 		</li>
 		<li class="list-group-item">
-			Stock <span class="badge bg-danger float-end">{{product.quantity}}</span>
+			HT Price €<span class="badge bg-secondary float-end">{{product.htprice}}</span>
 		</li>
 		<li class="list-group-item">
 			VAT <span class="badge bg-warning float-end">{{product.vat}}</span>
+		</li>
+		<li class="list-group-item">
+			Stock <span class="badge bg-danger float-end">{{product.quantity}}</span>
 		</li>
 	</ul>
 	<div class="card-footer text-end">

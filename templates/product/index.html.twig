@@ -1,8 +1,10 @@
 {% extends 'layout.html.twig' %}
 
+{% block product_active %}active{% endblock %}
+
 {% block content %}
 
-<h1>Products</h1>
+<h2>All products</h2>
 <div class="text-end">
 	<a href="{{path('product_new')}}">
 		<button class="btn-success btn btn-sm">Add</button>
@@ -15,8 +17,7 @@
 			<th scope="col">Name</th>
 			<th scope="col">Categories</th>
 			<th scope="col">Refecence</th>
-			<th class="text-end" scope="col">HT Price</th>
-			<th class="text-end" scope="col">VAT</th>
+			<th class="text-end" scope="col">Price (Inclusive of VAT)</th>
 			<th class="text-end" scope="col">Quantity</th>
 			<th scope="col" class=""></th>
 		</tr>
@@ -28,8 +29,7 @@
 			<td class="text-capitalize">{{product.label}}</td>
 			<td class="text-capitalize">{{product.categories|category}}</td>
 			<td class="text-uppercase">{{product.reference}}</td>
-			<td class="text-end">{{product.htprice}}</td>
-			<td class="text-end">{{product.vat}}</td>
+			<td class="text-end">{{product.htprice*(product.vat/100)}}</td>
 			<td class="text-end">{{product.quantity}}</td>
 			<td class="text-end">
 				<div class="btn-group" role="group" aria-label="Basic example">
