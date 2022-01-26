@@ -4,35 +4,41 @@
 
 <a href="{{path('product_list')}}" class="text-primary">Return to list</a>
 <h2>{{product.label|capitalize}} details.</h2>
-<div class="card shadow-sm" style="width: 18rem;">
-	<img src="..." class="card-img-top" alt="...">
-	<div class="card-body">
-		<h5 class="card-title text-capitalize">{{product.label}}</h5>
-		<div class="categories">
-			{% for category in product.categories %}
-			<span class="badge bg-success text-lowercase">{{category.label}}</span>
-			{% endfor %}
+<div class="row">
+	<div class="col-md-3">
+		<div class="card shadow-sm" style="width: 18rem;">
+			<img src="/uploads/images/products/default.jpg" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title text-capitalize">{{product.label}}</h5>
+				<div class="categories">
+					{% for category in product.categories %}
+					<span class="badge bg-success text-lowercase">{{category.label}}</span>
+					{% endfor %}
+				</div>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+					TTC Price € <span class="badge bg-primary float-end">{{product.TTCPrice}}</span>
+				</li>
+				<li class="list-group-item">
+					HT Price €<span class="badge bg-secondary float-end">{{product.htprice}}</span>
+				</li>
+				<li class="list-group-item">
+					VAT <span class="badge bg-warning float-end">{{product.vat}}</span>
+				</li>
+				<li class="list-group-item">
+					Stock <span class="badge bg-danger float-end">{{product.quantity}}</span>
+				</li>
+			</ul>
+			<div class="card-footer text-end">
+				<a href="{{path('product_edit', {'id': product.id})}}" class="btn btn-secondary btn-sm">Edit</a>
+				{% include "product/remove.html.twig" %}
+			</div>
 		</div>
 	</div>
-	<ul class="list-group list-group-flush">
-		<li class="list-group-item"><small class="card-text fs-6">{{product.description}}</small></li>
-		<li class="list-group-item">
-			TTC Price € <span class="badge bg-primary float-end">{{product.htprice * (product.vat/100)}}</span>
-		</li>
-		<li class="list-group-item">
-			HT Price €<span class="badge bg-secondary float-end">{{product.htprice}}</span>
-		</li>
-		<li class="list-group-item">
-			VAT <span class="badge bg-warning float-end">{{product.vat}}</span>
-		</li>
-		<li class="list-group-item">
-			Stock <span class="badge bg-danger float-end">{{product.quantity}}</span>
-		</li>
-	</ul>
-	<div class="card-footer text-end">
-		<a href="{{path('product_edit', {'id': product.id})}}" class="btn btn-secondary btn-sm">Edit</a>
-		{% include "product/remove.html.twig" %}
+	<div class="col shadow-sm p-4">
+		<h5>Description</h5>
+		<p>{{product.description}}</p>
 	</div>
 </div>
-
 {% endblock %}

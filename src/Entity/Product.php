@@ -173,4 +173,9 @@ class Product
 		}
 		return $res;
 	}
+
+	public function getTTCPrice(): ?string
+	{
+		return $this->ht_price + ($this->ht_price * ($this->vat / 100));
+	}
 }
