@@ -1,0 +1,9 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<h1>{%block action%}{%endblock%} Category</h1>
+<div class="shadow-sm p-4">
+	{% block category_content %}
+	{% endblock %}
+</div>
+{% endblock %}
